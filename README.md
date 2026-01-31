@@ -5,7 +5,7 @@
 **Octo-Flow** is a parallel processing AI engine that gives solopreneurs "8 extra arms." Instead of a linear chat, it generates 8 distinct strategic assets (Twitter hooks, SEO, Branding, etc.) simultaneously from a single product concept.
 
 ## 🚀 Live Demo
-[Insert Your Netlify Link Here]
+
 
 ## 💡 What it does
 1. **Input:** User enters a product concept.
