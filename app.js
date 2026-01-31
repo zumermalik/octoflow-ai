@@ -17,6 +17,15 @@ const mainGrid = document.getElementById('grid-container');
 const generateBtn = document.getElementById('generate-btn');
 const promptInput = document.getElementById('user-prompt');
 const loader = document.getElementById('loader');
+const statusBar = document.getElementById('status-bar'); // NEW
+const statusText = document.getElementById('status-text'); // NEW
+
+// LOGGING HELPER
+function log(msg) {
+    console.log(msg);
+    if(statusBar) statusBar.classList.remove('hidden');
+    if(statusText) statusText.innerText = `> ${msg}`;
+}
 
 // TENTACLE CONFIGURATION
 const TENTACLES = [
@@ -57,13 +66,16 @@ function initGrid() {
 if(startBtn) {
     startBtn.addEventListener('click', () => {
         const input = apiKeyInput.value.trim();
+        log("Checking credentials...");
+        
         if (input.length > 10 || input === JUDGE_CODE) {
             API_KEY = input === JUDGE_CODE ? DEMO_KEY : input;
-            console.log("Auth Successful. Key length:", API_KEY.length);
+            log(`Auth Success. Using Key: ${API_KEY.substring(0,6)}...`);
             authModal.classList.add('hidden');
             mainGrid.classList.remove('opacity-50', 'pointer-events-none');
             initGrid();
         } else {
+            log("Auth Failed: Invalid Key");
             authError.classList.remove('hidden');
         }
     });
@@ -72,9 +84,9 @@ if(startBtn) {
 // The Brain: GROQ LPU API Call
 async function generateStrategy() {
     const userIdea = promptInput.value;
-    if (!userIdea) { alert("Please enter an idea first!"); return; }
+    if (!userIdea) { alert("Please enter an idea!"); return; }
 
-    console.log("Starting Generation for:", userIdea);
+    log(`Processing idea: ${userIdea.substring(0, 20)}...`);
 
     // UI Updates
     loader.classList.remove('hidden');
@@ -90,11 +102,11 @@ async function generateStrategy() {
     const systemPrompt = `
         You are Octo-Flow. Return a STRICT JSON object with these 8 keys:
         "viral_hook", "linkedin_opener", "seo_keywords", "newsletter", "tagline", "competitors", "persona", "image_prompt".
-        Do not output Markdown. Do not output conversational text. Only JSON.
+        Do not output Markdown. Only JSON.
     `;
 
     try {
-        console.log("Sending request to Groq...");
+        log("Sending request to Groq LPU...");
         
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
             method: 'POST',
@@ -113,33 +125,32 @@ async function generateStrategy() {
             })
         });
 
-        console.log("Response Status:", response.status);
-
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error?.message || "Groq API Error");
+            const err = await response.json();
+            throw new Error(err.error?.message || "API Error");
         }
 
+        log("Response received. Parsing JSON...");
         const data = await response.json();
-        console.log("Raw Data:", data);
-
         let content = data.choices[0].message.content;
         
-        // 🧹 CLEANER: Remove Markdown if AI adds it
+        // Clean Markdown
         content = content.replace(/```json/g, '').replace(/```/g, '').trim();
-
         const strategy = JSON.parse(content);
 
+        log("Rendering Tentacles...");
         Object.keys(strategy).forEach(key => {
             const cardBody = document.querySelector(`#card-${key} .card-body`);
             if (cardBody) {
                 cardBody.innerHTML = formatOutput(key, strategy[key]);
             }
         });
+        log("Done!");
 
     } catch (error) {
-        console.error("Full Error:", error);
-        alert(`Error: ${error.message}`);
+        log(`CRITICAL ERROR: ${error.message}`);
+        // UPDATED ERROR MESSAGE FOR NEW VERSION
+        alert(`The Octopus stumbled: ${error.message}`);
     } finally {
         loader.classList.add('hidden');
         generateBtn.disabled = false;
