@@ -1,8 +1,9 @@
 // CONFIGURATION
 const JUDGE_CODE = "OCTO2026"; 
-const K_PART_1 = "gsk_SnFEvGe9UWhjfhieW2jb"; // Split to hide from GitHub
-const K_PART_2 = "WGdyb3FYhD3506gL0Tevz7hEFyMcySip";
-const DEMO_KEY = K_PART_1 + K_PART_2; 
+
+// ⚠️ SECURITY: Enter your Groq API Key here for the demo to work
+const DEMO_KEY = "YOUR_GROQ_API_KEY_HERE"; 
+
 let API_KEY = "";
 
 // UI ELEMENTS
