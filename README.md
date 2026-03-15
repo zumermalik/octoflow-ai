@@ -22,7 +22,7 @@
 ![Octo-Flow AI Generation Cards](assets/card-generation.png)
 
 ### View the history
-![Octo-Flow AI Generation Cards](assets/history.png)
+![Octo-Flow AI Generation Cards](assets/history-cards.png)
 
 
 ---
