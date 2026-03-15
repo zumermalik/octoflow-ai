@@ -1,72 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Octo-Flow AI | Intelligent Multitasking</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'] },
-                    colors: { ocean: { 900: '#0f172a', 800: '#1e293b', 400: '#38bdf8' } },
-                    animation: { 'blob': 'blob 7s infinite', 'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite' },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-ocean-900 text-white min-h-screen relative overflow-x-hidden selection:bg-ocean-400 selection:text-black">
-
-    <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-        <div class="glass-panel p-8 max-w-md w-full mx-4 rounded-2xl border border-white/10 shadow-2xl">
-            <h2 class="text-2xl font-bold mb-2 text-center">🐙 Enter the Hive Mind</h2>
-            <p class="text-gray-400 text-sm mb-6 text-center">Enter Access Code: <b>OCTO2026</b></p>
-            <input type="password" id="api-key-input" placeholder="OCTO2026" class="w-full bg-black/30 border border-white/20 rounded-lg p-3 text-white mb-4 focus:outline-none focus:border-cyan-400 transition-colors">
-            <button id="start-engine-btn" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-3 rounded-lg transition-all transform hover:scale-[1.02]">
-                Initialize Octo-Flow
-            </button>
-            <p id="auth-error" class="text-red-400 text-xs mt-3 hidden text-center">Invalid Code. Try OCTO2026</p>
-        </div>
-    </div>
-
-    <main class="relative z-10 max-w-7xl mx-auto px-4 py-12 flex flex-col items-center">
-        <header class="text-center mb-16">
-            <div class="inline-block mb-4 px-4 py-1 rounded-full bg-white/5 border border-white/10 text-cyan-300 text-xs tracking-widest uppercase">Octopus Hackathon 2026</div>
-            <h1 class="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-white to-purple-300 mb-6">Octo-Flow AI</h1>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto">Give your product idea 8 extra arms.</p>
-        </header>
-
-        <div class="w-full max-w-3xl relative mb-12 group">
-            <div class="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-            <div class="relative flex">
-                <input type="text" id="user-prompt" placeholder="e.g., Uber for dog walking..." class="w-full bg-ocean-800/90 backdrop-blur-xl text-white border border-white/10 rounded-l-xl px-6 py-5 text-lg focus:outline-none">
-                <button id="generate-btn" class="bg-white text-ocean-900 font-bold px-8 rounded-r-xl hover:bg-cyan-50 transition-colors flex items-center gap-2">
-                    <span>Release the Kraken</span>
-                </button>
-            </div>
-        </div>
-
-        <div id="status-bar" class="w-full max-w-3xl mb-8 p-3 rounded bg-black/50 border border-green-500/30 text-green-400 font-mono text-xs hidden">
-            <span class="font-bold">SYSTEM LOG:</span> <span id="status-text">Ready...</span>
-        </div>
-
-        <div id="grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full opacity-50 pointer-events-none transition-opacity duration-500"></div>
-        
-        <div id="loader" class="hidden my-12 text-center text-cyan-400 animate-pulse">Thinking with 8 brains...</div>
-    </main>
-
-    <script src="app.js?v=9999"></script> 
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐙</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Octo-Flow Pro | AI Strategist</title>
+  </head>
+  <body class="bg-[#050505] text-white selection:bg-purple-500/30 font-sans overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
