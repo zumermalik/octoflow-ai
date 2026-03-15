@@ -7,7 +7,7 @@ export const generateStrategy = async (prompt, customKey) => {
 
   const systemPrompt = `You are Octo-Flow, an AI strategist. User Idea: "${prompt}". Generate a VALID JSON object with exactly these 8 keys. Do not include markdown formatting. { "twitter": "Tweet hook", "linkedin": "LinkedIn opener", "seo": "5 keywords", "email": "Email subject/opener", "tagline": "Slogan", "competitors": "3 competitors", "persona": "Persona", "image_prompt": "Image gen prompt" }`;
 
-  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ contents: [{ parts: [{ text: systemPrompt }] }] })
